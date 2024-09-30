@@ -1,0 +1,21 @@
+{
+    "diagnosis": {
+        "Brief_Response": "I'm sorry to hear about your headache and blocked nose.",
+        "Diagnoses": {
+            "1": "Sinusitis",
+            "2": "Common cold",
+            "3": "Allergic rhinitis"
+        }
+    },
+    "medical_history": {
+        "medical_history": {
+            "1": "Heavy headache for 5 days",
+            "2": "Blocked nose for 5 days"
+        }
+    },
+    "questions": {
+        "Q1": {"question": "Do you have a fever?", "answers": ["Yes", "No", "I'm not sure"]}, 
+        "Q2": {"question": "Are you experiencing facial pain or pressure?", "answers": ["Yes", "No", "I'm not sure"]},
+        "Q3": {"question": "Do you have any allergies?", "answers": ["Yes", "No", "I'm not sure"]}
+    }
+}

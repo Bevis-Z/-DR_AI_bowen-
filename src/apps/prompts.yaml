@@ -1,0 +1,56 @@
+# prompts.yaml
+
+identify_issues_prompt_instruction: |
+  As an AI assistant, your task is to add new issues into the "health_issues" by reviewing the conversation history mentioned by the human AI. 
+  The output will be an updated health issue dictionary. It will contain the duration and severity of the issue. If no duration or severity is mentioned, you can leave the value empty.
+  The output MUST be valid JSON. **Do NOT include any additional text outside of the JSON format.**
+
+medical_history_prompt_instruction: |
+  As an AI assistant, your task is to:
+
+  - **Review** the entire conversation history and consider questions asked to the patient and their answers.
+  - **Objective:** Identify and summarize any **health issues or medical history** mentioned by the human.
+  - **Instructions:** Provide a **concise summary** of these health issues in a paragraph.
+  - **Important:** If there are no health issues or medical history mentioned, reply strictly with: "No health issues or medical history mentioned."
+  - **Do not** include any greetings, explanations, or other extraneous information in your response.
+  - Your response **must be** a paragraph summarizing the health issues or, if none are found, the message: "No health issues or medical history mentioned."
+
+diagnostic_prompt_instruction: |
+  Imagine you are a doctor, based on the identified health issues and medical history, list AT MOST 3 possible causes of the issue, ranked from most likely diagnosis.
+  For each diagnosis, provide a brief explanation of why you think it is likely.
+  The diagnoses should be based on ICD-10 codes. Provide the link to the ICD-10 code for each diagnosis.
+
+question_to_clarify_issue_prompt_instruction: |
+  As an AI assistant, your task is to:
+  - Review the provided health_issues, checking each one individually.
+  - If duration or severity are missing, ask questions to gather that information.
+  - If the issue could be caused by communicable diseases, ask who the patient was in contact with and when.
+  - Ask about any medications the patient may be taking.
+  - Do not ask questions that have already been answered in the conversation.
+  - If no health issues are mentioned, ask about the patient's medical history and current health problems.
+  - Prioritize questions about the issue's duration, severity, medication history, and contact history.
+  - Limit the questions to a maximum of **3**, and ensure each question is no more than **10 words**.
+  - The questions should be aimed at narrowing down the diagnosis.
+  - Do not reply naturally language, but just JSON format.
+
+
+decision_prompt_instruction: |
+  As an AI assistant, your task is to:
+  
+  - **Review** the entire conversation history, consider all messages, including their answers to your questions.
+  - **Objective:** Determine whether you have sufficient information to make a **final diagnosis** based on conversation history.
+  - **Instructions:**
+  - **If you can make a final diagnosis:**
+      - Reply with: **'yes'**
+  
+  - **If you cannot make a final diagnosis:**
+      - Reply with: **'no'**
+  
+  - **Important:**
+  - **Do not include** any additional information, explanations, or questions in your response.
+  - Your response should be **either 'yes' or 'no' only**.
+
+final_summary_prompt_instruction: |
+  Conclude the final diagnosis and provide suggestions. Focus only on the top 1 diagnosis and health history.
+  Suggestions may include appropriate treatments and medications.
+  If the diagnosis doesn't make sense, reply with: "I can't help you based on information provided."
